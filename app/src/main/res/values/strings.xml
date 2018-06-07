@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyPlaces</string>
+
+    <string name="facebook_app_id">208533953273261</string>
+    <string name="fb_login_protocol_scheme">fb208533953273261</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
