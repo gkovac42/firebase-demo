@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.goran.firebasedemo.R;
-import com.example.goran.firebasedemo.ui.main.MainActivity;
+import com.example.goran.firebasedemo.ui.map.MapActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -49,7 +49,10 @@ public class SignUpActivity extends AppCompatActivity {
             createFirebaseUser(email, password, displayName);
 
         } else {
-            Toast.makeText(this, "Check your password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    R.string.error_signup_password,
+                    Toast.LENGTH_SHORT)
+                    .show();
         }
     }
 
@@ -58,10 +61,13 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         setUserDisplayName(displayName);
-                        startActivity(new Intent(this, MainActivity.class));
+                        startActivity(new Intent(this, MapActivity.class));
 
                     } else {
-                        Toast.makeText(this, "Error! Please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,
+                                R.string.error_create_user,
+                                Toast.LENGTH_SHORT)
+                                .show();
                     }
                 });
     }

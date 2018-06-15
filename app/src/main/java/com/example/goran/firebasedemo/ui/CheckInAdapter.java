@@ -16,9 +16,19 @@ import java.util.List;
 public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHolder> {
 
     private List<CheckIn> checkIns;
+    private AdapterOnClickListener listener;
 
     public CheckInAdapter() {
         this.checkIns = new ArrayList<>();
+    }
+
+    public interface AdapterOnClickListener {
+
+        void onClick(CheckIn checkIn);
+    }
+
+    public void setListener(AdapterOnClickListener listener) {
+        this.listener = listener;
     }
 
     public void add(CheckIn checkIn) {
@@ -40,11 +50,17 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            TextView txtLocation = holder.itemView.findViewById(R.id.list_item_location);
-            txtLocation.setText(checkIns.get(position).toString());
+        TextView txtLocation = holder.itemView.findViewById(R.id.list_item_location);
+        txtLocation.setText(checkIns.get(position).toString());
 
-            TextView txtData = holder.itemView.findViewById(R.id.list_item_date);
-            txtData.setText(checkIns.get(position).getDate().toString());
+        TextView txtData = holder.itemView.findViewById(R.id.list_item_date);
+        txtData.setText(checkIns.get(position).getDate().toString());
+
+        holder.itemView.setOnClickListener(view -> {
+            if (listener != null) {
+                listener.onClick(checkIns.get(position));
+            }
+        });
     }
 
     @Override
@@ -54,7 +70,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(View listItem) {
+        ViewHolder(View listItem) {
             super(listItem);
         }
     }

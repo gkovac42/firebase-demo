@@ -9,10 +9,7 @@ import android.support.annotation.NonNull;
 import com.example.goran.firebasedemo.data.CheckIn;
 import com.example.goran.firebasedemo.data.FirestoreManager;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
 
@@ -30,11 +27,6 @@ public class CheckInViewModel extends AndroidViewModel {
 
     }
 
-    public void saveAsBookmark(LatLng latLng, OnCompleteListener<DocumentReference> onCompleteListener) {
-        firestoreManager.saveAsBookmark(latLng)
-                .addOnCompleteListener(onCompleteListener);
-    }
-
     public LiveData<List<CheckIn>> getCheckInHistory(OnFailureListener onFailureListener) {
         MutableLiveData<List<CheckIn>> checkIns = new MutableLiveData<>();
 
@@ -43,31 +35,5 @@ public class CheckInViewModel extends AndroidViewModel {
                 .addOnSuccessListener(snapshots -> checkIns.setValue(snapshots.toObjects(CheckIn.class)));
 
         return checkIns;
-    }
-
-    public LiveData<CheckIn> getLastCheckIn(OnFailureListener onFailureListener) {
-        MutableLiveData<CheckIn> lastCheckIn = new MutableLiveData<>();
-
-        firestoreManager.getAllCheckIns()
-                .addOnFailureListener(onFailureListener)
-                .addOnSuccessListener(snapshots -> {
-                    if (snapshots.size() > 0) {
-                        DocumentSnapshot snapshot = snapshots.getDocuments().get(snapshots.size() - 1);
-                        CheckIn checkIn = snapshot.toObject(CheckIn.class);
-                        lastCheckIn.setValue(checkIn);
-                    }
-                });
-
-        return lastCheckIn;
-    }
-
-    public LiveData<List<CheckIn>> getBookmarks(OnFailureListener onFailureListener) {
-        MutableLiveData<List<CheckIn>> bookmarks = new MutableLiveData<>();
-
-        firestoreManager.getBookmarks()
-                .addOnFailureListener(onFailureListener)
-                .addOnSuccessListener(snapshots -> bookmarks.setValue(snapshots.toObjects(CheckIn.class)));
-
-        return bookmarks;
     }
 }

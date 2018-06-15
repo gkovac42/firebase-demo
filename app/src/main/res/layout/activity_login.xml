@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:padding="16dp"
     tools:context=".ui.login.LoginActivity">
 
     <TextView
@@ -12,8 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Firebase Demo"
-        android:textSize="22dp"
+        android:drawablePadding="16dp"
+        android:drawableTop="@drawable/ic_map_black_24dp"
+        android:text="@string/app_name"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_login_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +26,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="e-mail"
+        android:ems="20"
+        android:hint="@string/hint_e_mail"
+        android:textColorHighlight="@color/colorAccent"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/hint_password"
+        android:textColorHighlight="@color/colorAccent"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +51,10 @@
         android:id="@+id/btn_login_sign_in"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Sign in"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_round_corners"
+        android:text="@string/action_sign_in"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_login_password" />
@@ -57,11 +63,12 @@
         android:id="@+id/txt_login_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="?android:attr/selectableItemBackground"
-        android:text="No account? Sign up here"
+        android:text="@string/msg_sign_up"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login_sign_in" />
@@ -75,7 +82,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="or use an existing account:"
+        android:text="@string/msg_sign_in_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_login_sign_up" />
@@ -89,6 +96,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,22 @@
 <resources>
-    <string name="app_name">MyPlaces</string>
+    <string name="app_name">My Places</string>
 
-    <string name="facebook_app_id">208533953273261</string>
-    <string name="fb_login_protocol_scheme">fb208533953273261</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">My Places</string>
+    <string name="title_activity_sign_up">Sign up</string>
+    <string name="msg_permissions_denied">You can\'t use this app without location permissions!</string>
+    <string name="msg_permissions_granted">Permissions granted!</string>
+    <string name="error_history">There was an error while getting your history.</string>
+    <string name="error_sign_in">Sign in failed, please try again.</string>
+    <string name="error_signup_password">Check your password!</string>
+    <string name="error_create_user">Error! Please try again</string>
+    <string name="action_menu_sign_out">Sign out</string>
+    <string name="hint_username">username</string>
+    <string name="hint_e_mail">e-mail</string>
+    <string name="hint_password">password</string>
+    <string name="hint_confirm_password">confirm password</string>
+    <string name="action_create_account">Create account</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="msg_sign_up">No account? Sign up here</string>
+    <string name="msg_sign_in_google">or use an existing Google account:</string>
+
 </resources>
