@@ -1,5 +1,6 @@
 package com.example.goran.firebasedemo.data;
 
+import com.example.goran.firebasedemo.data.model.CheckIn;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

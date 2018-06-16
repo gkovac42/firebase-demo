@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.example.goran.firebasedemo.data.CheckIn;
+import com.example.goran.firebasedemo.data.model.CheckIn;
 import com.example.goran.firebasedemo.data.FirestoreManager;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,7 +24,6 @@ public class CheckInViewModel extends AndroidViewModel {
 
     public void saveCheckIn(LatLng latLng) {
         firestoreManager.saveCheckIn(latLng);
-
     }
 
     public LiveData<List<CheckIn>> getCheckInHistory(OnFailureListener onFailureListener) {

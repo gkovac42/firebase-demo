@@ -42,9 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password = txtPassword.getText().toString();
         String confirmedPassword = txtConfirmPassword.getText().toString();
 
-        if (!displayName.isEmpty()
-                && !email.isEmpty()
-                && !password.isEmpty()
+        if (!displayName.isEmpty() && !email.isEmpty() && !password.isEmpty()
                 && password.matches(confirmedPassword)) {
             createFirebaseUser(email, password, displayName);
 
@@ -81,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
                     .build();
             user.updateProfile(profileChange);
         } else {
-            Log.e("Error", "User null");
+            Log.e("Error", "user null");
         }
     }
 }

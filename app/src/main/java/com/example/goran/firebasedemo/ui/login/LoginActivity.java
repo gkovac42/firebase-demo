@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.txt_login_email) TextView txtEmail;
     @BindView(R.id.txt_login_password) TextView txtPassword;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
