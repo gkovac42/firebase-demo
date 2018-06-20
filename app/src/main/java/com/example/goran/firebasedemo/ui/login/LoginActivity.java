@@ -7,7 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.goran.firebasedemo.R;
-import com.example.goran.firebasedemo.ui.map.MapActivity;
+import com.example.goran.firebasedemo.ui.main.MainActivity;
 import com.example.goran.firebasedemo.ui.signup.SignUpActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -17,7 +17,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.BindView;
@@ -42,17 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = auth.getCurrentUser();
-
-        if (currentUser != null) {
-            startMapActivity();
-        }
-    }
-
     @OnClick(R.id.btn_login_sign_in)
     public void firebaseAuthWithEmail() {
         String email = txtEmail.getText().toString();
@@ -61,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        startMapActivity();
+                        navigateToMainActivity();
 
                     } else {
                         displayErrorMessage();
@@ -111,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        startMapActivity();
+                        navigateToMainActivity();
 
                     } else {
                         displayErrorMessage();
@@ -119,14 +107,17 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void startMapActivity() {
-        Intent intent = new Intent(this, MapActivity.class);
+    private void navigateToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void displayErrorMessage() {
-        Toast.makeText(this, R.string.error_sign_in, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                R.string.error_sign_in,
+                Toast.LENGTH_SHORT)
+                .show();
     }
 }
 

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.goran.firebasedemo.R;
-import com.example.goran.firebasedemo.ui.map.MapActivity;
+import com.example.goran.firebasedemo.ui.map.MapFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         setUserDisplayName(displayName);
-                        startActivity(new Intent(this, MapActivity.class));
+                        startActivity(new Intent(this, MapFragment.class));
 
                     } else {
                         Toast.makeText(this,

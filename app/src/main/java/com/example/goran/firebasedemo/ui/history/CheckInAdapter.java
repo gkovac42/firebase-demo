@@ -1,4 +1,4 @@
-package com.example.goran.firebasedemo.ui;
+package com.example.goran.firebasedemo.ui.history;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +51,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TextView txtLocation = holder.itemView.findViewById(R.id.list_item_location);
-        txtLocation.setText(checkIns.get(position).toString());
+        txtLocation.setText(checkIns.get(position).getAddress());
 
         TextView txtData = holder.itemView.findViewById(R.id.list_item_date);
         txtData.setText(checkIns.get(position).getDate().toString());

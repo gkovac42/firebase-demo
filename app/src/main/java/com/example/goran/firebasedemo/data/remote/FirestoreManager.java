@@ -1,14 +1,12 @@
-package com.example.goran.firebasedemo.data;
+package com.example.goran.firebasedemo.data.remote;
 
 import com.example.goran.firebasedemo.data.model.CheckIn;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Date;
 
 public class FirestoreManager {
 
@@ -21,9 +19,7 @@ public class FirestoreManager {
         this.user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public void saveCheckIn(LatLng latLng) {
-        CheckIn checkIn = new CheckIn(latLng.latitude, latLng.longitude, new Date());
-
+    public void saveCheckIn(CheckIn checkIn) {
         FirebaseFirestore.getInstance()
                 .collection(COL_USERS)
                 .document(user.getUid())
@@ -36,6 +32,7 @@ public class FirestoreManager {
                 .collection(COL_USERS)
                 .document(user.getUid())
                 .collection(COL_CHECK_INS)
+                .orderBy("date", Query.Direction.DESCENDING)
                 .get();
     }
 }

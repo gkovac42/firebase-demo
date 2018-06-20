@@ -18,5 +18,11 @@
     <string name="action_sign_in">Sign in</string>
     <string name="msg_sign_up">No account? Sign up here</string>
     <string name="msg_sign_in_google">or use an existing Google account:</string>
+    <string name="title_activity_main">MyPlaces</string>
+    <string name="title_my_location">My Location</string>
+    <string name="title_history">History</string>
+    <string name="title_profile">Profile</string>
+    <string name="action_sign_out">Sign out</string>
+    <string name="error_generic">Something went wrong.</string>
 
 </resources>
