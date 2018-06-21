@@ -24,5 +24,9 @@
     <string name="title_profile">Profile</string>
     <string name="action_sign_out">Sign out</string>
     <string name="error_generic">Something went wrong.</string>
+    <string name="action_clear_history">Clear History</string>
+    <string name="title_error">Error</string>
+    <string name="action_try_again">Try again</string>
+    <string name="action_back">Back</string>
 
 </resources>

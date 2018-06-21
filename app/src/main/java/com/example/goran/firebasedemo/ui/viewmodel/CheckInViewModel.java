@@ -22,11 +22,12 @@ import retrofit2.Response;
 public class CheckInViewModel extends ViewModel {
 
     private DataRepository dataRepository;
-
     private MutableLiveData<CheckIn> currentCheckIn;
 
     public CheckInViewModel() {
-        dataRepository = new DataRepository(new FirestoreManager(), new GeocodingApiManager());
+        dataRepository = new DataRepository(
+                new FirestoreManager(),
+                new GeocodingApiManager());
 
         currentCheckIn = new MutableLiveData<>();
     }
@@ -40,14 +41,22 @@ public class CheckInViewModel extends ViewModel {
     }
 
     public LiveData<List<CheckIn>> getCheckInHistory(OnFailureListener onFailureListener) {
-        MutableLiveData<List<CheckIn>> checkIns = new MutableLiveData<>();
+        MutableLiveData<List<CheckIn>> checkInsLiveData = new MutableLiveData<>();
 
         dataRepository.getAllCheckIns()
                 .addOnFailureListener(onFailureListener)
-                .addOnSuccessListener(snapshots ->
-                        checkIns.setValue(snapshots.toObjects(CheckIn.class)));
+                .addOnSuccessListener(snapshots -> {
 
-        return checkIns;
+                    List<CheckIn> checkIns = snapshots.toObjects(CheckIn.class);
+
+                    if (checkIns.size() > 20) {
+                        checkIns = checkIns.subList(0, 20);
+                    }
+
+                    checkInsLiveData.postValue(checkIns);
+                });
+
+        return checkInsLiveData;
     }
 
     public void getCheckInAddress(CheckIn checkIn) {

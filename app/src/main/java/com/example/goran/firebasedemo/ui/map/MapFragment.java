@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.goran.firebasedemo.R;
 import com.example.goran.firebasedemo.data.model.CheckIn;
@@ -31,6 +32,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private FusedLocationProviderClient locationProvider;
     private CheckInViewModel viewModel;
+    private ProgressBar progressBar;
     private GoogleMap map;
     private MapView mapView;
 
@@ -52,6 +54,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = view.findViewById(R.id.progress_map);
+
+        showProgressBar();
+
         mapView.getMapAsync(this);
 
         if (getActivity() != null) {
@@ -63,6 +69,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             if (checkIn != null) {
                 viewModel.saveCheckIn(checkIn);
                 goToLocation(checkIn);
+                hideProgressBar();
             }
         });
     }
@@ -105,11 +112,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void displayErrorDialog() {
         new AlertDialog.Builder(getActivity())
-                .setTitle("Error")
-                .setMessage("Oops, something went wrong")
-                .setPositiveButton("Try again", (dialogInterface, i) -> getCurrentLocation())
-                .setNegativeButton("Back", null)
+                .setTitle(R.string.title_error)
+                .setMessage(R.string.error_generic)
+                .setPositiveButton(R.string.action_try_again, (dialogInterface, i) -> getCurrentLocation())
+                .setNegativeButton(R.string.action_back, null)
                 .show();
+    }
+
+    private void showProgressBar() {
+        mapView.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.INVISIBLE);
+        mapView.setVisibility(View.VISIBLE);
     }
 
     @Override
