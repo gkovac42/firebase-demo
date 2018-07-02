@@ -44,14 +44,6 @@ public class MainActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(this);
 
         addOnPageChangeListener(navigation);
-
-        if (hasLocationPermissions()) {
-            initFragments();
-            initPagerAdapter();
-            viewPager.setCurrentItem(0);
-        } else {
-            requestLocationPermissions();
-        }
     }
 
     @Override
@@ -63,6 +55,15 @@ public class MainActivity extends AppCompatActivity
 
         if (currentUser == null) {
             startActivity(new Intent(this, LoginActivity.class));
+
+        } else {
+            if (hasLocationPermissions()) {
+                initFragments();
+                initPagerAdapter();
+                viewPager.setCurrentItem(0);
+            } else {
+                requestLocationPermissions();
+            }
         }
     }
 
